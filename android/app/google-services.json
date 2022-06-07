@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "335640031676",
+    "project_id": "dw-7-job-timer-d8585",
+    "storage_bucket": "dw-7-job-timer-d8585.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335640031676:android:e5bf2e6891657642ecfbb9",
+        "android_client_info": {
+          "package_name": "br.com.erimedeiros.job_timer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335640031676-rv261u47tbumfis9u12ukhofu0jn7bph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcTej7T36yvVJQqKXlpL3fCKpATQP6avM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335640031676-rv261u47tbumfis9u12ukhofu0jn7bph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
