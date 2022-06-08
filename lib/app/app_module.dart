@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:job_timer/app/core/ui/database/database.dart';
+import 'package:job_timer/app/core/ui/database/database_impl.dart';
 import 'package:job_timer/app/modules/home/home_module.dart';
 import 'package:job_timer/app/modules/login/login_module.dart';
 import 'package:job_timer/app/modules/splash/splash_page.dart';
@@ -10,6 +12,7 @@ class AppModule extends Module {
   List<Bind> get binds => [
         //Binding para ser utilizado em qualquer parte da aplicação
         Bind.lazySingleton<AuthServices>((i) => AuthServicesImpl()),
+        Bind.lazySingleton<Database>((i) => DatabaseImpl()),
       ];
   @override
   List<ModularRoute> get routes => [
@@ -22,7 +25,7 @@ class AppModule extends Module {
           module: LoginModule(),
         ),
         ModuleRoute(
-          '/home',
+          '/home/',
           module: HomeModule(),
         )
       ];
