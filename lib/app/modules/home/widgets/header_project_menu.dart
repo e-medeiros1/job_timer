@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:job_timer/app/entities/projetct_status.dart';
 
 class HeaderProjectMenu extends SliverPersistentHeaderDelegate {
@@ -21,7 +22,7 @@ class HeaderProjectMenu extends SliverPersistentHeaderDelegate {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    contentPadding: EdgeInsets.all(10),
+                    contentPadding: const EdgeInsets.all(10),
                     isCollapsed: true,
                   ),
                   items: ProjectStatus.values
@@ -38,7 +39,9 @@ class HeaderProjectMenu extends SliverPersistentHeaderDelegate {
               SizedBox(
                 width: constraints.maxWidth * .4,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Modular.to.pushNamed('/project/register/');
+                  },
                   icon: const Icon(Icons.add),
                   label: const Text('Novo projeto'),
                 ),
