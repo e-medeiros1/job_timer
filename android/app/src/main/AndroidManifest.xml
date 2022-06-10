@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.erimedeiros.job_timer">
    <application
-        android:label="job_timer"
+        android:label="Job Timer"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
