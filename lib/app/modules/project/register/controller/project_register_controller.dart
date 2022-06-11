@@ -24,6 +24,7 @@ class ProjectRegisterController extends Cubit<ProjectRegisterStatus> {
         tasks: [],
       );
       await _projectService.register(project);
+      await Future.delayed(const Duration(seconds: 1));
       //Depois do cadastro, deve-se informar que o cadastro foi concluido
       emit(ProjectRegisterStatus.success);
     } catch (e, s) {
