@@ -1,6 +1,7 @@
 import 'package:asuka/asuka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:job_timer/app/core/ui/button_with_loader.dart';
 import 'package:job_timer/app/modules/project/register/controller/project_register_controller.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -34,7 +35,7 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
 //Adicionando o blocListener pois não é preciso rebuildar a tela
 //Utilizando Asuka pra mostrar o erro
     return BlocListener<ProjectRegisterController, ProjectRegisterStatus>(
-      //Bloclistener precisa estar linkado com algum bloc, como não está 
+      //Bloclistener precisa estar linkado com algum bloc, como não está
       //sendo utilizado nenhum provider, é preciso especificar
       bloc: widget.controller,
       listener: ((context, state) {
@@ -97,24 +98,15 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
-              //Loader
-              BlocSelector<ProjectRegisterController, ProjectRegisterStatus,
-                      bool>(
-                  bloc: widget.controller,
-                  selector: (state) => state == ProjectRegisterStatus.loading,
-                  builder: (context, showLoading) {
-                    return Visibility(
-                      visible: showLoading,
-                      child: const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      ),
-                    );
-                  }),
               SizedBox(
                 width: screenSize.width * 1,
                 height: 49,
-                child: ElevatedButton(
+                child: ButtonWithLoader<ProjectRegisterController,
+                    ProjectRegisterStatus>(
+                  bloc: widget.controller,
+                  selector: (state) => state == ProjectRegisterStatus.loading,
                   onPressed: () async {
+                    
                     //Para o validator funcionar, faça a checagem e guarde em uma
                     // variável, se for nulo, é falso
                     final formValid =
@@ -129,7 +121,7 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
                       await widget.controller.register(name, estimate);
                     }
                   },
-                  child: const Text('Salvar'),
+                  label: 'Salvar',
                 ),
               )
             ]),
