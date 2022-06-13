@@ -56,4 +56,22 @@ class ProjectRepositoryImpl implements ProjectRepository {
     }
     return projects;
   }
+
+  @override
+  Future<void> finish(int projectId) async {
+    //Abrindo DB
+    try {
+      final connection = await _database.openConnection();
+      //Chamando instância de project
+      final projects = await findById(projectId);
+      //Alterando status do projeto
+      projects.status = ProjectStatus.finalizado;
+      //Salvando alterações no DB
+      await connection.writeTxn(
+          (isar) => connection.projects.put(projects, saveLinks: true));
+    } on IsarError catch (e, s) {
+      log(e.message, error: e, stackTrace: s);
+      throw Failure(message: 'Erro ao finalizar projeto');
+    }
+  }
 }
