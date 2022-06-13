@@ -4,6 +4,7 @@ import 'package:isar/isar.dart';
 import 'package:job_timer/app/core/database/database.dart';
 import 'package:job_timer/app/core/exceptions/failure.dart';
 import 'package:job_timer/app/entities/project.dart';
+import 'package:job_timer/app/entities/project_task.dart';
 import 'package:job_timer/app/entities/projetct_status.dart';
 
 import './project_repository.dart';
@@ -32,6 +33,27 @@ class ProjectRepositoryImpl implements ProjectRepository {
     final projects =
         await connection.projects.filter().statusEqualTo(status).findAll();
 
+    return projects;
+  }
+
+  @override
+  Future<Project> addTask(int projectId, ProjectTask task) async {
+    final connection = await _database.openConnection();
+    final projects = await findById(projectId);
+
+    projects.tasks.add(task);
+    await connection.writeTxn((isar) => projects.tasks.save());
+    return projects;
+  }
+
+  @override
+  Future<Project> findById(int projectId) async {
+    final connection = await _database.openConnection();
+    final projects = await connection.projects.get(projectId);
+
+    if (projects == null) {
+      throw Failure(message: 'Projeto não encontrado');
+    }
     return projects;
   }
 }
