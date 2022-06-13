@@ -9,5 +9,7 @@ abstract class ProjectRepository {
   //Botão para salvar uma nova task
   Future<Project> findById(int projectId);
   Future<Project> addTask(int projectId, ProjectTask task);
-
+  
+  //Botão para finalizar task
+  Future<void> finish(int projectId);
 }
