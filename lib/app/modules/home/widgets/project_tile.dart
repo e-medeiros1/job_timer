@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:job_timer/app/core/ui/job_timer_icons.dart';
+import 'package:job_timer/app/modules/home/controller/home_controller.dart';
 import 'package:job_timer/app/view_models/project_model.dart';
 
 //Responsável pelo marcador de duração dos projetos na home page
 class ProjectTile extends StatelessWidget {
-  ProjectTile({Key? key, required this.projectModel}) : super(key: key);
+  const ProjectTile({Key? key, required this.projectModel}) : super(key: key);
 
   final ProjectModel projectModel;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          Modular.to.pushNamed('/project/detail/', arguments: projectModel),
+      onTap: () async {
+        await Modular.to.pushNamed('/project/detail/', arguments: projectModel);
+        Modular.get<HomeController>().updateList();
+      },
       child: Container(
         constraints: const BoxConstraints(maxHeight: 90),
         margin: const EdgeInsets.all(10),
@@ -82,13 +85,14 @@ class _ProjectProgress extends StatelessWidget {
         Expanded(
           child: LinearProgressIndicator(
             value: percentage,
-            color: Colors.grey.shade400,
-            backgroundColor: Theme.of(context).primaryColor,
+            color: Theme.of(context).primaryColor,
+            backgroundColor:
+                Theme.of(context).primaryColorLight.withOpacity(0.35),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Text('${projectModel.estimate}h'),
+          child: Text('${projectModel.estimate.toStringAsFixed(0)}h'),
         )
       ]),
     );
