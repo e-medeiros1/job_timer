@@ -1,3 +1,5 @@
+
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:job_timer/app/services/auth/projects/project_service.dart';
@@ -9,7 +11,7 @@ class ProjectDetailController extends Cubit<ProjectDetailState> {
   final ProjectService _projectService;
   ProjectDetailController({required ProjectService projectService})
       : _projectService = projectService,
-        super(ProjectDetailState.initial());
+        super(const ProjectDetailState.initial());
 
   void setProject(ProjectModel projectModel) {
     emit(state.copyWith(
@@ -18,6 +20,18 @@ class ProjectDetailController extends Cubit<ProjectDetailState> {
 
   Future<void> updateProject() async {
     final project = await _projectService.findById(state.projectModel!.id!);
-    emit(state.copyWith(projectModel: project));
+    emit(state.copyWith(
+        projectModel: project, status: ProjectDetailStatus.complete));
+  }
+
+  Future<void> finishProject() async {
+    try {
+      emit(state.copyWith(status: ProjectDetailStatus.loading));
+      final projectId = state.projectModel!.id!;
+      await _projectService.finish(projectId);
+      updateProject();
+    } catch (e) {
+      emit(state.copyWith(status: ProjectDetailStatus.failure));
+    }
   }
 }
