@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppConfigUI {
   AppConfigUI._();
 
-  static final MaterialColor _primarySwatch =  const MaterialColor(0xFF0066B0, {
+  static const MaterialColor _primarySwatch = MaterialColor(0xFF0066B0, {
     50: Color(0xFF005c9e),
     100: Color(0xFF00528d),
     200: Color(0xFF00477b),
@@ -14,7 +14,6 @@ class AppConfigUI {
     700: Color(0xFF001423),
     800: Color(0xFF000a12),
     900: Color(0xff000000),
-
   });
 
   static final ThemeData theme = ThemeData(

@@ -34,6 +34,7 @@ class TaskController extends Cubit<TaskStatus> {
       emit(TaskStatus.loading);
       final task = ProjectTaskModel(name: name, duration: duration);
       await _projectService.addTask(_projectModel.id!, task);
+      await Future.delayed(Duration(seconds: 1));
       emit(TaskStatus.success);
     } catch (e, s) {
       log('Erro ao salvar task', error: e, stackTrace: s);

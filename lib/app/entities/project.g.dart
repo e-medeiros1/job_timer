@@ -15,7 +15,7 @@ extension GetProjectCollection on Isar {
 const ProjectSchema = CollectionSchema(
   name: 'Project',
   schema:
-      '{"name":"Project","idName":"id","properties":[{"name":"estimate","type":"Long"},{"name":"name","type":"String"},{"name":"status","type":"Long"}],"indexes":[],"links":[{"name":"tasks","target":"ProjectTask"}]}',
+      '{"name":"Project","idName":"id","properties":[{"name":"estimate","type":"Double"},{"name":"name","type":"String"},{"name":"status","type":"Long"}],"indexes":[],"links":[{"name":"tasks","target":"ProjectTask"}]}',
   idName: 'id',
   propertyIds: {'estimate': 0, 'name': 1, 'status': 2},
   listProperties: {},
@@ -75,7 +75,7 @@ void _projectSerializeNative(
   cObj.buffer_length = size;
   final buffer = IsarNative.bufAsBytes(cObj.buffer, size);
   final writer = IsarBinaryWriter(buffer, staticSize);
-  writer.writeLong(offsets[0], _estimate);
+  writer.writeDouble(offsets[0], _estimate);
   writer.writeBytes(offsets[1], _name);
   writer.writeLong(offsets[2], _status);
 }
@@ -83,7 +83,7 @@ void _projectSerializeNative(
 Project _projectDeserializeNative(IsarCollection<Project> collection, int id,
     IsarBinaryReader reader, List<int> offsets) {
   final object = Project();
-  object.estimate = reader.readLong(offsets[0]);
+  object.estimate = reader.readDouble(offsets[0]);
   object.id = id;
   object.name = reader.readString(offsets[1]);
   object.status =
@@ -98,7 +98,7 @@ P _projectDeserializePropNative<P>(
     case -1:
       return id as P;
     case 0:
-      return (reader.readLong(offset)) as P;
+      return (reader.readDouble(offset)) as P;
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
@@ -218,51 +218,34 @@ extension ProjectQueryWhere on QueryBuilder<Project, Project, QWhereClause> {
 
 extension ProjectQueryFilter
     on QueryBuilder<Project, Project, QFilterCondition> {
-  QueryBuilder<Project, Project, QAfterFilterCondition> estimateEqualTo(
-      int value) {
-    return addFilterConditionInternal(FilterCondition(
-      type: ConditionType.eq,
-      property: 'estimate',
-      value: value,
-    ));
-  }
-
   QueryBuilder<Project, Project, QAfterFilterCondition> estimateGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
+      double value) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.gt,
-      include: include,
+      include: false,
       property: 'estimate',
       value: value,
     ));
   }
 
   QueryBuilder<Project, Project, QAfterFilterCondition> estimateLessThan(
-    int value, {
-    bool include = false,
-  }) {
+      double value) {
     return addFilterConditionInternal(FilterCondition(
       type: ConditionType.lt,
-      include: include,
+      include: false,
       property: 'estimate',
       value: value,
     ));
   }
 
   QueryBuilder<Project, Project, QAfterFilterCondition> estimateBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
+      double lower, double upper) {
     return addFilterConditionInternal(FilterCondition.between(
       property: 'estimate',
       lower: lower,
-      includeLower: includeLower,
+      includeLower: false,
       upper: upper,
-      includeUpper: includeUpper,
+      includeUpper: false,
     ));
   }
 
@@ -576,7 +559,7 @@ extension ProjectQueryWhereDistinct
 
 extension ProjectQueryProperty
     on QueryBuilder<Project, Project, QQueryProperty> {
-  QueryBuilder<Project, int, QQueryOperations> estimateProperty() {
+  QueryBuilder<Project, double, QQueryOperations> estimateProperty() {
     return addPropertyNameInternal('estimate');
   }
 

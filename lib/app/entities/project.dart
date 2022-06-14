@@ -12,7 +12,7 @@ class Project {
 
   late String name;
 
-  late int estimate;
+  late double estimate;
 
   @ProjectStatusConverter()
   late ProjectStatus status;

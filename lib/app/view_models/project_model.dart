@@ -5,7 +5,7 @@ import 'package:job_timer/app/view_models/project_task_model.dart';
 class ProjectModel {
   final int? id;
   final String name;
-  final int estimate;
+  final double estimate;
   final ProjectStatus status;
   final List<ProjectTaskModel> tasks;
 

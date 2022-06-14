@@ -11,7 +11,7 @@ class HomeState extends Equatable {
   final HomeStatus status;
   final ProjectStatus projectFilter;
 
-  HomeState._({
+  const HomeState._({
     required this.projects,
     required this.status,
     required this.projectFilter,

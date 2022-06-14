@@ -6,12 +6,12 @@ class ProjectDetailState extends Equatable {
   final ProjectDetailStatus status;
   final ProjectModel? projectModel;
 
-  ProjectDetailState._({
+  const ProjectDetailState._({
     required this.status,
     this.projectModel,
   });
 
-  ProjectDetailState.initial() : this._(status: ProjectDetailStatus.initial);
+  const ProjectDetailState.initial() : this._(status: ProjectDetailStatus.initial);
 
   ProjectDetailState copyWith({
     ProjectDetailStatus? status,

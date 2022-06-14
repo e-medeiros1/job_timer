@@ -5,6 +5,7 @@ import 'package:job_timer/app/core/ui/button_with_loader.dart';
 import 'package:job_timer/app/modules/project/register/controller/project_register_controller.dart';
 import 'package:validatorless/validatorless.dart';
 
+// ignore: must_be_immutable
 class ProjectRegisterPage extends StatefulWidget {
   ProjectRegisterController controller;
 
@@ -106,7 +107,6 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
                   bloc: widget.controller,
                   selector: (state) => state == ProjectRegisterStatus.loading,
                   onPressed: () async {
-                    
                     //Para o validator funcionar, faça a checagem e guarde em uma
                     // variável, se for nulo, é falso
                     final formValid =
@@ -116,7 +116,7 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
                       //If valid, do something
                       final name = _projectNameEC.text;
                       //Transformando em inteiro
-                      final estimate = int.parse(_estimateEC.text);
+                      final estimate = double.parse(_estimateEC.text);
 
                       await widget.controller.register(name, estimate);
                     }
