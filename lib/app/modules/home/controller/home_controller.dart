@@ -3,17 +3,22 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_timer/app/entities/projetct_status.dart';
+import 'package:job_timer/app/services/auth/auth_services.dart';
 import 'package:job_timer/app/services/auth/projects/project_service.dart';
 import 'package:job_timer/app/view_models/project_model.dart';
 
 part 'home_state.dart';
 
 class HomeController extends Cubit<HomeState> {
-  ProjectService _projectService;
+  final AuthServices _authServices;
+  final ProjectService _projectService;
   //Imutabilidade
   //Ninguém tem acesso ao project service sem ser a controller
-  HomeController({required ProjectService projectService})
-      : _projectService = projectService,
+  HomeController(
+      {required AuthServices authServices,
+      required ProjectService projectService})
+      : _authServices = authServices,
+        _projectService = projectService,
         super(
           HomeState.initial(),
         );
@@ -41,5 +46,12 @@ class HomeController extends Cubit<HomeState> {
         status: HomeStatus.complete,
         projects: projects,
         projectFilter: status));
+  }
+
+  void updateList() => (state.projectFilter);
+
+//Método para sair
+  Future<void> logout() async{
+    await _authServices.signOut();
   }
 }
