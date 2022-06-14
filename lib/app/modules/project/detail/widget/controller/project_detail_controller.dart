@@ -1,5 +1,3 @@
-
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:job_timer/app/services/auth/projects/project_service.dart';
@@ -14,12 +12,14 @@ class ProjectDetailController extends Cubit<ProjectDetailState> {
         super(const ProjectDetailState.initial());
 
   void setProject(ProjectModel projectModel) {
+    _sortTasks(projectModel);
     emit(state.copyWith(
         projectModel: projectModel, status: ProjectDetailStatus.complete));
   }
 
   Future<void> updateProject() async {
     final project = await _projectService.findById(state.projectModel!.id!);
+    _sortTasks(project);
     emit(state.copyWith(
         projectModel: project, status: ProjectDetailStatus.complete));
   }
@@ -33,5 +33,10 @@ class ProjectDetailController extends Cubit<ProjectDetailState> {
     } catch (e) {
       emit(state.copyWith(status: ProjectDetailStatus.failure));
     }
+  }
+
+  void _sortTasks(ProjectModel projectModel) {
+    //Comparando o novo com o anterior e fazendo a ordenação
+    projectModel.tasks.sort(((a, b) => b.id!.compareTo(a.id!)));
   }
 }
