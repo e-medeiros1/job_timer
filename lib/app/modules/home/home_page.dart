@@ -6,6 +6,7 @@ import 'package:job_timer/app/modules/home/widgets/header_project_menu.dart';
 import 'package:job_timer/app/modules/home/widgets/project_tile.dart';
 import 'package:job_timer/app/view_models/project_model.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   HomeController controller;
 
@@ -22,9 +23,10 @@ class HomePage extends StatelessWidget {
         }
       }),
       child: Scaffold(
-        drawer: const Drawer(
+        drawer: Drawer(
           child: SafeArea(
               child: ListTile(
+            onTap: () => controller.logout(),
             title: Text('Sair'),
           )),
         ),
