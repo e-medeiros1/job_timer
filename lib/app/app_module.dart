@@ -16,8 +16,8 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         //Binding para ser utilizado em qualquer parte da aplicação
-        Bind.lazySingleton<AuthServices>((i) => AuthServicesImpl()),
         Bind.lazySingleton<Database>((i) => DatabaseImpl()),
+        Bind.lazySingleton<AuthServices>((i) => AuthServicesImpl(database: i())),
         Bind.lazySingleton<ProjectRepository>(
             (i) => ProjectRepositoryImpl(database: i())),
         Bind.lazySingleton<ProjectService>(
