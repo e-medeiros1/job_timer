@@ -51,7 +51,7 @@ class HomeController extends Cubit<HomeState> {
     );
   }
 
-  void updateList() => (state.projectFilter);
+  void updateList() => filter(state.projectFilter);
 
 //Método para sair
   Future<void> logout() async {
