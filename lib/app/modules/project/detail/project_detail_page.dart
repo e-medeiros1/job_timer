@@ -120,7 +120,7 @@ class ProjectDetailPage extends StatelessWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Confirma a finalização do projeto?'),
+            title: Text('Deseja finalizar o projeto?'),
             actions: [
               TextButton(
                 onPressed: () {

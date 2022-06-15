@@ -39,74 +39,77 @@ class _TaskPageState extends State<TaskPage> {
         if (state == TaskStatus.success) {
           Navigator.pop(context);
         } else if (state == TaskStatus.failure) {
-          AsukaSnackbar.alert('Erro ao salvar Task').show();
+          AsukaSnackbar.alert('Erro ao salvar task').show();
         }
       },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
           backgroundColor: Colors.white,
-          title: const Text(
-            'Criar novo projeto',
-            style: TextStyle(color: Colors.black),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: const Text(
+              'Criar nova task',
+              style: TextStyle(color: Colors.black),
+            ),
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            centerTitle: true,
           ),
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.black),
-          centerTitle: true,
-        ),
-        body: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(children: [
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: _nameEC,
-                decoration: const InputDecoration(
-                  label: Text('Nome da task'),
+          body: Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(children: [
+                const SizedBox(
+                  height: 10,
                 ),
-                validator: Validatorless.required('Nome obrigatório'),
-                //Sempre adicionar uma validação
-                //Utiliza-se o package validatorless
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: _durationEC,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  label: Text('Duração da task'),
+                TextFormField(
+                  controller: _nameEC,
+                  decoration: const InputDecoration(
+                    label: Text('Nome da task'),
+                  ),
+                  validator: Validatorless.required('Nome obrigatório'),
+                  //Sempre adicionar uma validação
+                  //Utiliza-se o package validatorless
                 ),
-                validator: Validatorless.multiple([
-                  Validatorless.required('Duração obrigatória'),
-                  Validatorless.number('Permitido somente números'),
-                ]),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width: screenSize.width * 1,
-                height: 49,
-                //LoaderButton
-                child: ButtonWithLoader<TaskController, TaskStatus>(
-                    bloc: widget.controller,
-                    selector: (state) => state == TaskStatus.loading,
-                    onPressed: () {
-                      final formValid =
-                          _formKey.currentState?.validate() ?? false;
+                const SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  controller: _durationEC,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    label: Text('Duração da task'),
+                  ),
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Duração obrigatória'),
+                    Validatorless.number('Permitido somente números'),
+                  ]),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: screenSize.width * 1,
+                  height: 49,
+                  //LoaderButton
+                  child: ButtonWithLoader<TaskController, TaskStatus>(
+                      bloc: widget.controller,
+                      selector: (state) => state == TaskStatus.loading,
+                      onPressed: () {
+                        final formValid =
+                            _formKey.currentState?.validate() ?? false;
 
-                      if (formValid) {
-                        final duration = int.parse(_durationEC.text);
-                        widget.controller.register(_nameEC.text, duration); 
-                      }
-                    },
-                    label: 'Salvar'),
-              )
-            ]),
+                        if (formValid) {
+                          final duration = int.parse(_durationEC.text);
+                          widget.controller.register(_nameEC.text, duration);
+                        }
+                      },
+                      label: 'Salvar'),
+                )
+              ]),
+            ),
           ),
         ),
       ),

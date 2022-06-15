@@ -53,78 +53,81 @@ class _ProjectRegisterPageState extends State<ProjectRegisterPage> {
             break;
         }
       }),
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
           backgroundColor: Colors.white,
-          title: const Text(
-            'Criar novo projeto',
-            style: TextStyle(color: Colors.black),
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            title: const Text(
+              'Criar novo projeto',
+              style: TextStyle(color: Colors.black),
+            ),
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.black),
+            centerTitle: true,
           ),
-          elevation: 0,
-          iconTheme: const IconThemeData(color: Colors.black),
-          centerTitle: true,
-        ),
-        body: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(children: [
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: _projectNameEC,
-                decoration: const InputDecoration(
-                  label: Text('Nome do projeto'),
+          body: Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(children: [
+                const SizedBox(
+                  height: 10,
                 ),
-                //Sempre adicionar uma validação
-                //Utiliza-se o package validatorless
-                validator: Validatorless.required('Nome obrigatório'),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: _estimateEC,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  label: Text('Estimativa de horas'),
+                TextFormField(
+                  controller: _projectNameEC,
+                  decoration: const InputDecoration(
+                    label: Text('Nome do projeto'),
+                  ),
+                  //Sempre adicionar uma validação
+                  //Utiliza-se o package validatorless
+                  validator: Validatorless.required('Nome obrigatório'),
                 ),
-                validator: Validatorless.multiple([
-                  Validatorless.required('Estimativa obrigatória'),
-                  Validatorless.number('Permitido somente números'),
-                ]),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width: screenSize.width * 1,
-                height: 49,
-                child: ButtonWithLoader<ProjectRegisterController,
-                    ProjectRegisterStatus>(
-                  bloc: widget.controller,
-                  selector: (state) => state == ProjectRegisterStatus.loading,
-                  onPressed: () async {
-                    //Para o validator funcionar, faça a checagem e guarde em uma
-                    // variável, se for nulo, é falso
-                    final formValid =
-                        _formKey.currentState?.validate() ?? false;
+                const SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  controller: _estimateEC,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    label: Text('Estimativa de horas'),
+                  ),
+                  validator: Validatorless.multiple([
+                    Validatorless.required('Estimativa obrigatória'),
+                    Validatorless.number('Permitido somente números'),
+                  ]),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: screenSize.width * 1,
+                  height: 49,
+                  child: ButtonWithLoader<ProjectRegisterController,
+                      ProjectRegisterStatus>(
+                    bloc: widget.controller,
+                    selector: (state) => state == ProjectRegisterStatus.loading,
+                    onPressed: () async {
+                      //Para o validator funcionar, faça a checagem e guarde em uma
+                      // variável, se for nulo, é falso
+                      final formValid =
+                          _formKey.currentState?.validate() ?? false;
 
-                    if (formValid) {
-                      //If valid, do something
-                      final name = _projectNameEC.text;
-                      //Transformando em inteiro
-                      final estimate = double.parse(_estimateEC.text);
+                      if (formValid) {
+                        //If valid, do something
+                        final name = _projectNameEC.text;
+                        //Transformando em inteiro
+                        final estimate = double.parse(_estimateEC.text);
 
-                      await widget.controller.register(name, estimate);
-                    }
-                  },
-                  label: 'Salvar',
-                ),
-              )
-            ]),
+                        await widget.controller.register(name, estimate);
+                      }
+                    },
+                    label: 'Salvar',
+                  ),
+                )
+              ]),
+            ),
           ),
         ),
       ),
