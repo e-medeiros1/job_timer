@@ -1,16 +1,24 @@
-# job_timer
+<p align="center">
+      <img src="https://user-images.githubusercontent.com/73318684/173961092-fe7d2cc9-abc7-4214-9bb4-076bac3b0ee6.png
+" width="150" alt="Logo JobTimer"/>
+</p>
+<h1 align="center"> Job Timer </h1>  
 
-A new Flutter project.
+<h2 align="center"> App de gestão de horas para projetos no padrão MVVM, usando BloC, NoSQL Isar, Firebase, Modular e muito mais! </h2>  
+<h2> Sobre </h2>
+<p >
+  Esse projeto foi desenvolvido na DartWeek dos dias 6 ao dia 11 de junho, uma semana intensa, com muito foco e apoio da comunidade da academia do flutter.
+</p>  
 
-## Getting Started
+### Funcionalidades
 
-This project is a starting point for a Flutter application.
+- [x] Splash screen
+- [x] Login com Google
+- [x] Tela de detalhes
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+   
+   >Esse projeto foi desenvolvido ❤️ por **[@erimedeiros](https://www.linkedin.com/in/erimedeiros/)**, com o instrutor **[@RodrigoRahman](https://www.linkedin.com/in/rodrigo-rahman/)**, na #DartWeek da **[Academia do Flutter](http://academiadoflutter.com.br)**.<br> 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ---
+  
