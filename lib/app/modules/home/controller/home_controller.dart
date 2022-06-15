@@ -42,16 +42,19 @@ class HomeController extends Cubit<HomeState> {
     //Buscando projetos
     final projects = await _projectService.findMyStatus(status);
     //Emitindo um novo status
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         status: HomeStatus.complete,
         projects: projects,
-        projectFilter: status));
+        projectFilter: status,
+      ),
+    );
   }
 
   void updateList() => (state.projectFilter);
 
 //Método para sair
-  Future<void> logout() async{
+  Future<void> logout() async {
     await _authServices.signOut();
   }
 }

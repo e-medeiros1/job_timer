@@ -53,7 +53,6 @@ class ProjectServiceImpl implements ProjectService {
   }
 
   @override
-  //Não é preciso fazer conversão porque está tudo sendo feito no repository
   Future<void> finish(int projectId) => _projectRepository.finish(projectId);
-  //Adiciona dependências dentro do modular(App_Module)
+
 }

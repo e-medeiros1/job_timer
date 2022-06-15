@@ -30,7 +30,7 @@ class AppModule extends Module {
           child: ((context, args) => const SplashPage()),
         ),
         ModuleRoute(
-          '/login',
+          '/login/',
           module: LoginModule(),
         ),
         ModuleRoute(
