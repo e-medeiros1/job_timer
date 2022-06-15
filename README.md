@@ -12,6 +12,7 @@
 - [x] Splash screen
 - [x] Login com Google
 - [x] Tela de detalhes
+- [x] E muito mais!!! 
 
 
    
