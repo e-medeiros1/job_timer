@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_timer/app/modules/home/controller/home_controller.dart';
 import 'package:job_timer/app/modules/home/widgets/header_project_menu.dart';
 import 'package:job_timer/app/modules/home/widgets/project_tile.dart';
-import 'package:job_timer/app/modules/home/widgets/user.dart';
 import 'package:job_timer/app/view_models/project_model.dart';
 
 // ignore: must_be_immutable
