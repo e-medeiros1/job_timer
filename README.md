@@ -1,6 +1,5 @@
 <p align="center">
-      <img src="https://user-images.githubusercontent.com/73318684/173961092-fe7d2cc9-abc7-4214-9bb4-076bac3b0ee6.png
-" width="150" alt="Logo JobTimer"/>
+      <img src="https://user-images.githubusercontent.com/73318684/173961092-fe7d2cc9-abc7-4214-9bb4-076bac3b0ee6.png" width="150" alt="Logo JobTimer"/>
 </p>
 <h1 align="center"> Job Timer </h1>  
 
