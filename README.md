@@ -1,13 +1,11 @@
 <p align="center">
       <img src="https://user-images.githubusercontent.com/73318684/173961092-fe7d2cc9-abc7-4214-9bb4-076bac3b0ee6.png" width="150" alt="Logo JobTimer"/>
 
-<h2 align="center"> App de gestão de horas para projetos no padrão MVVM, usando BloC, NoSQL Isar, Firebase, Modular e muito mais! </h2>
+<h2 align="center"> App de gestão de horas para projetos no padrão MVVM, usando BloC, NoSQL Isar, Firebase, Modular e muito mais! </br></br> 
 
-<div align="center">
 <img src="https://img.shields.io/badge/dart-C.svg?style=for-the-badge&logo=dart&color=152030">
 <img src="https://img.shields.io/badge/flutter-C.svg?style=for-the-badge&logo=flutter&color=0468D7"> 
-<img src="https://img.shields.io/badge/Visual%20Studio%20Code-%23323330.svg?style=for-the-badge&logo=visual-studio-code&logoColor=FFFFFF&color=2F74C0">      
-</div>
+<img src="https://img.shields.io/badge/Visual%20Studio%20Code-%23323330.svg?style=for-the-badge&logo=visual-studio-code&logoColor=FFFFFF&color=2F74C0">   </h2>
 
 <h2> Sobre </h2>
 <p >
